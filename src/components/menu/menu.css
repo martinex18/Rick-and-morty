@@ -1,0 +1,21 @@
+.menu{
+    margin: 2rem;
+    display: flex;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.menu_lista{
+    list-style: none;
+    display: flex;
+    gap: 50px;
+}
+
+.menu_item a{
+    color: #00ffff;
+    text-decoration: none;
+}
+
+.menu_item a:hover{
+    text-shadow: 0 4px 12px #00ffff;
+}

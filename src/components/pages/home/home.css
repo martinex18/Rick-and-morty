@@ -1,0 +1,15 @@
+.home{
+    margin: 2.5rem;
+}
+
+.home_title{
+    color: #00ffff;
+    font-size: 80px;
+    font-family: 'Nanum Pen Script', cursive;
+    text-shadow: 0 4px 12px #00ffff;
+}
+
+.home_img {
+    width: 450px;
+    padding: 20px;
+}
