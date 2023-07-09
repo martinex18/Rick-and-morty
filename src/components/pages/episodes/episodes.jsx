@@ -32,7 +32,7 @@ export const Episodes = () => {
       { episodes && episodes.map((episode, index) => (
         <div className="episode" key={index}>
           <p>{episode.name}</p>
-          <p>Fecha de publicación: {episode.air_date} </p>
+          <p>Fecha de publicación: <span>{episode.air_date}</span> </p>
           <br />
         </div>
       ))}

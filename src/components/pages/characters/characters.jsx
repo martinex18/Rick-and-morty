@@ -27,11 +27,29 @@ export const Characters = () => {
     <>
       <Menu />
       <div className="characters">
-      { characters && characters.map((character, index) => (
-        <div className="character" key={index}>
-          <p>{character.name}</p>
+        <h1 className="characters_tittle">Characters</h1>
+        <div className="character">
+          {!characters ? 'No Characters' : characters.map((character, index) => (
+            <div className="character_cards" key={index}>
+              <div>
+                <img src={character.image} alt={character.name}/>
+              </div>
+
+              <div className="character_info">
+                <h3>{character.name}</h3>
+                <p>
+                  {character.status == "Alive" ? (
+                    <>
+                      <span className="alive">Alive</span>
+                    </>
+                  ): (
+                    <span className="dead">Dead</span>
+                  )}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
       </div>
     </>
   )
