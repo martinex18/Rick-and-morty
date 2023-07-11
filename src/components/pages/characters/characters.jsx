@@ -8,7 +8,17 @@ import axios from "axios"
 import { Menu } from "../../menu/menu"
 
 export const Characters = () => {
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return() => clearTimeout(timer);
+  }, []);
+
+  /* ====== API ====== */
   const [characters, setCharacters] = useState(null);
 
   useEffect(() => {
@@ -26,31 +36,48 @@ export const Characters = () => {
   return (
     <>
       <Menu />
-      <div className="characters">
-        <h1 className="characters_tittle">Characters</h1>
-        <div className="character">
-          {!characters ? 'No Characters' : characters.map((character, index) => (
-            <div className="character_cards" key={index}>
-              <div>
-                <img src={character.image} alt={character.name}/>
-              </div>
-
-              <div className="character_info">
-                <h3>{character.name}</h3>
-                <p>
-                  {character.status == "Alive" ? (
-                    <>
-                      <span className="alive">Alive</span>
-                    </>
-                  ): (
-                    <span className="dead">Dead</span>
-                  )}
-                </p>
-              </div>
-            </div>
-          ))}
+      { loading ? (
+        <div className="loading">
+          <box-icon name='loader-circle' animation='spin' color='#00ffff' size="90px" ></box-icon>
         </div>
-      </div>
+      ) :(
+          <section className="characters">
+            <h1 className="characters_title">Characters</h1>
+            <div className="character">
+              {!characters ? 'No characters' : characters.map((character, index) => (
+                <div className="character-container" key={index}>
+                  <div>
+                    <img src={character.image} alt={character.name} />
+                  </div>
+                  <div>
+                    <h3>{character.name}</h3>
+                    <h6>
+                      {character.status === "Alive" ? (
+                        <>
+                          <span className="alive" />
+                          Alive
+                        </>
+                      ) : (
+                        <>
+                          <span className="dead" />
+                          Dead
+                        </>
+                      )}
+                    </h6>
+                    <p>
+                      <span className="text-grey">Episodios: </span>
+                      <span>{character.episode.length}</span>
+                    </p>
+                    <p>
+                      <span className="text-grey">Especie: </span>
+                      <span>{character.species}</span>
+                    </p>
+                  </div>
+                </div>
+              ))}
+          </div>
+        </section>
+      )}
     </>
   )
 }
