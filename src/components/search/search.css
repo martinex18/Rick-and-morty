@@ -1,0 +1,22 @@
+.search{
+    padding: 12px;
+    font-size: 18px;
+    border-radius: 6px;
+    width: 300px;
+    background-color: #f2f2f2;
+    color: #000000;
+    outline: none;
+}
+
+.search:focus{
+    outline: 1px solid #00ffff;
+    box-shadow: 0 2px 12px #00ffff;
+}
+
+.search::placeholder{
+    transition: transform 0.5s ease-in-out;
+}
+
+.search:focus::placeholder{
+    transform: scale(0);
+}

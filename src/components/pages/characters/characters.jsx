@@ -2,50 +2,55 @@
 import "./characters.css"
 /* ====== Hooks ====== */
 import { useEffect, useState } from "react"
-import axios from "axios"
+/* ====== API ====== */
+import { ApiCharacters } from "../../../apis/ApiCharacters/ApiCharacters"
 
-/* ====== Pages ====== */
+/* ====== Components ====== */
 import { Menu } from "../../menu/menu"
+import Search from "../../search/search"
+import Loading from "../../loading/loading"
 
 export const Characters = () => {
+  /* ====== Loading ====== */
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 1000);
+    }, 300);
 
     return() => clearTimeout(timer);
   }, []);
 
   /* ====== API ====== */
-  const [characters, setCharacters] = useState(null);
+  const [characters, setCharacters] = useState([]);
 
   useEffect(() => {
-    axios.get('https://rickandmortyapi.com/api/character')
-    .then(response => {
-      const characters = response.data.results;
-      setCharacters(characters);
+    ApiCharacters.fetchData()
+    .then(data => {
+      setCharacters(data);
     })
-
     .catch(error => {
-      console.log(error);
-    })
+      console.log(error)
+    });
   }, []);
+
+  const handleSearch = (results) => {
+    setCharacters(results);
+  };
 
   return (
     <>
       <Menu />
       { loading ? (
-        <div className="loading">
-          <box-icon name='loader-circle' animation='spin' color='#00ffff' size="90px" ></box-icon>
-        </div>
+        <Loading />
       ) :(
           <section className="characters">
             <h1 className="characters_title">Characters</h1>
+            <Search onSearch={handleSearch}/>
             <div className="character">
-              {!characters ? 'No characters' : characters.map((character, index) => (
-                <div className="character-container" key={index}>
+              {!characters ? 'No characters' : characters.map((character) => (
+                <div className="character-container" key={character.id}>
                   <div>
                     <img src={character.image} alt={character.name} />
                   </div>
@@ -71,6 +76,10 @@ export const Characters = () => {
                     <p>
                       <span className="text-grey">Especie: </span>
                       <span>{character.species}</span>
+                    </p>
+                    <p>
+                      <span className="text-grey">Gender: </span>
+                      <span>{character.gender}</span>
                     </p>
                   </div>
                 </div>

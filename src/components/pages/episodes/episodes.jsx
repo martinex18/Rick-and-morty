@@ -2,22 +2,20 @@
 import "./episodes.css"
 /* ====== Hooks ====== */
 import { useState, useEffect } from "react";
-import axios from "axios";
 
 /* ====== Pages ====== */
 import { Menu } from '../../menu/menu'
+import { ApiCharacters } from "../../../apis/ApiCharacters/ApiCharacters";
 
 export const Episodes = () => {
 
   const [episodes, setEpisodes] = useState(null);
 
   useEffect(() => {
-    axios.get('https://rickandmortyapi.com/api/episode')
-    .then(response => {
-      const episodes = response.data.results;
-      setEpisodes(episodes)
+    ApiCharacters.fetchData()
+    .then(data => {
+      setEpisodes(data)
     })
-
     .catch(error => {
       console.log(error);
     })
