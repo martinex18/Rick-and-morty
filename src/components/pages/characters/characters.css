@@ -1,8 +1,3 @@
-.loading{
-  display: flex;
-  justify-content: center;
-}
-
 .characters{
   padding: 0px 50px;
 }
@@ -22,12 +17,13 @@
   width: 100%;
   padding-bottom: 50px;
 }
+
 .character-container {
   display: flex;
   background: #3c3e44;
   margin: 20px 10px;
   border-radius: 10px;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .character-container h3 {
@@ -72,7 +68,7 @@
 }
 
 .character-container img {
-  width: 100%;
+  width: 200px;
   height: 100%;
   object-fit: cover;
    border-radius: 10px 0 0 10px;
@@ -82,6 +78,7 @@
   font-size: 17px;
   text-align: center;
   margin: 5px 0;
+  padding: 0 7px 0 7px;
 }
 
 .text-grey {
