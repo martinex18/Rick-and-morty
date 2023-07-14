@@ -3,7 +3,7 @@ import "./menu.css";
 /* ====== React Router ====== */
 import { Link } from "react-router-dom";
 
-export const Menu = () => {
+const Menu = () => {
   return (
     <header className="menu">
         <ul className="menu_lista">
@@ -14,9 +14,11 @@ export const Menu = () => {
                 <Link to="/characters">Characters</Link>
             </li>
             <li className="menu_item">
-                <Link to="/episodes">Episodes</Link>
+                <Link to="/credits">Credist</Link>
             </li>
         </ul>
     </header>
   )
 }
+
+export default Menu

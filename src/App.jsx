@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 /* ====== Pages ====== */
 import { Home } from './components/pages/home/home'
 import { Characters } from './components/pages/characters/characters'
-import { Episodes } from './components/pages/episodes/episodes'
+import Credits from './components/pages/credits/credits'
 
 function App() {
 
@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={ <Home /> } />
           <Route path="/characters" element={ <Characters /> } />
-          <Route path="/episodes" element={ <Episodes /> } />
+          <Route path='/credits' element={ <Credits /> } />
         </Routes>
       </BrowserRouter>
     </>

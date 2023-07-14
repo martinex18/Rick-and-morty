@@ -3,6 +3,7 @@ import './search.css'
 import PropTypes from 'prop-types';
 /* ====== Hooks ====== */
 import { useState, useEffect } from 'react'
+/* ====== API ====== */
 import { QueryCharacters } from '../../apis/ApiSearchCharacters/ApiSearchCharacters';
 
 const Search = ({ onSearch }) => {
@@ -25,9 +26,12 @@ const Search = ({ onSearch }) => {
   }
 
   return (
-    <>
-        <input type="text" onChange={searcher} value={searchQuery} placeholder='Search Character' className='search'/>
-    </>
+    <div className='search'>
+      <span className='icon'>
+        <box-icon name='search-alt' color='#000000' ></box-icon>
+      </span>
+      <input type="text" onChange={searcher} value={searchQuery} placeholder='Search Character' className='search_input'/>
+    </div>
   )
 }
 

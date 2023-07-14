@@ -4,11 +4,11 @@ import "./characters.css"
 import { useEffect, useState } from "react"
 /* ====== API ====== */
 import { ApiCharacters } from "../../../apis/ApiCharacters/ApiCharacters"
-
 /* ====== Components ====== */
-import { Menu } from "../../menu/menu"
+import Menu from "../../menu/menu"
 import Search from "../../search/search"
 import Loading from "../../loading/loading"
+import NullCharacters from "../../NullCharacters/NullCharacters"
 
 export const Characters = () => {
   /* ====== Loading ====== */
@@ -48,9 +48,9 @@ export const Characters = () => {
           <section className="characters">
             <h1 className="characters_title">Characters</h1>
             <Search onSearch={handleSearch}/>
-            <div className="character">
-              {!characters ? 'No characters' : characters.map((character) => (
-                <div className="character-container" key={character.id}>
+            <div className="cards">
+              {!characters ? <NullCharacters /> : characters.map((character) => (
+                <div className="card" key={character.id}>
                   <div>
                     <img src={character.image} alt={character.name} />
                   </div>

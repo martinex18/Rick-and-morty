@@ -1,0 +1,57 @@
+.credist{
+    margin: 2rem;
+    padding: 0.5rem;
+}
+
+.credist_dev{
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+
+.credist_dev h1, h3{
+    color: #fff;
+    letter-spacing: 2px;
+}
+
+.credist_dev span{
+    color: #00ffff;
+    text-transform: uppercase;
+    text-shadow: 0 2px 12px #00ffff;
+    letter-spacing: 2px;
+}
+
+.credist_network{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.credist_icon{
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.credist_icon a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.credist_icon a:hover{
+    text-decoration: underline;
+}
+
+.credist_api{
+    margin-top: 2rem;
+}
+.credist_api a{
+    color: #00ffff;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .credist_network {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
