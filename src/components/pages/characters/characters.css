@@ -26,6 +26,7 @@
   margin: 20px 10px;
   border-radius: 10px;
   align-items: center;
+  cursor: pointer;
 }
 
 .card h3 {
@@ -69,11 +70,11 @@
   text-align: left;
 }
 
-.card img {
+.img img{
   width: 200px;
   height: 100%;
-  object-fit: cover;
   border-radius: 10px 0 0 10px;
+  overflow: hidden;
 }
 
 .card p {
