@@ -1,40 +1,26 @@
 /* ====== Styles ====== */
 import "./characters.css"
 /* ====== Hooks ====== */
-import { useEffect, useState } from "react"
+import { useState } from "react"
 /* ====== API ====== */
-import { ApiCharacters } from "../../../apis/ApiCharacters/ApiCharacters"
+import { useApiContext } from "../../../apis/CharactersContext/ApiContext"
 /* ====== Components ====== */
 import Menu from "../../menu/menu"
 import Search from "../../search/search"
-import Loading from "../../loading/loading"
 import NullCharacters from "../../NullCharacters/NullCharacters"
+import CharacterDetails from "../charactersDetails/characterDetails"
 
 export const Characters = () => {
-  /* ====== Loading ====== */
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 300);
-
-    return() => clearTimeout(timer);
-  }, []);
+  const [selectedCharacter, setSelectedCharacter] = useState(null);
+  const cerrarAlerta = () => {
+    setSelectedCharacter(null);
+  };
 
   /* ====== API ====== */
+  const { character } = useApiContext();
+
+  /* ====== BUSCADOR ====== */
   const [characters, setCharacters] = useState([]);
-
-  useEffect(() => {
-    ApiCharacters.fetchData()
-    .then(data => {
-      setCharacters(data);
-    })
-    .catch(error => {
-      console.log(error)
-    });
-  }, []);
-
   const handleSearch = (results) => {
     setCharacters(results);
   };
@@ -42,16 +28,13 @@ export const Characters = () => {
   return (
     <>
       <Menu />
-      { loading ? (
-        <Loading />
-      ) :(
           <section className="characters">
             <h1 className="characters_title">Characters</h1>
             <Search onSearch={handleSearch}/>
             <div className="cards">
               {!characters ? <NullCharacters /> : characters.map((character) => (
-                <div className="card" key={character.id}>
-                  <div>
+                <div className="card" key={character.id} onClick={() => setSelectedCharacter(character)}>
+                  <div className="img">
                     <img src={character.image} alt={character.name} />
                   </div>
                   <div>
@@ -86,7 +69,8 @@ export const Characters = () => {
               ))}
           </div>
         </section>
-      )}
+        {/*{selectedCharacter && <CharacterDetails character={selectedCharacter} onClose={cerrarAlerta}/>} */}
+        <CharacterDetails character={selectedCharacter} onClose={cerrarAlerta}/>
     </>
   )
 }
