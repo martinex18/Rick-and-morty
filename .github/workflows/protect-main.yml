@@ -5,41 +5,14 @@ on:
     branches:
       - main
 
-permissions:
-  contents: read
-  pull-requests: read
-
 jobs:
-  block-direct-push:
+  branch-protection-reminder:
     runs-on: ubuntu-latest
     steps:
-      - name: Check if commit comes from a Pull Request
-        id: pr-check
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const { owner, repo } = context.repo;
-            const sha = context.sha;
-
-            const response = await github.request(
-              'GET /repos/{owner}/{repo}/commits/{commit_sha}/pulls',
-              {
-                owner,
-                repo,
-                commit_sha: sha,
-                mediaType: { previews: ['groot'] }
-              }
-            );
-
-            const fromPr = response.data.length > 0;
-            core.setOutput('from_pr', fromPr ? 'true' : 'false');
-
-      - name: Block direct pushes to main
-        if: steps.pr-check.outputs.from_pr != 'true'
+      - name: Explain branch protection configuration
         run: |
-          echo "Direct pushes to 'main' are blocked. Open a Pull Request instead."
-          exit 1
-
-      - name: Allow merge from Pull Request
-        if: steps.pr-check.outputs.from_pr == 'true'
-        run: echo "Commit detected as part of a Pull Request merge."
+          echo "ℹ️ This workflow no longer fails pushes to main."
+          echo "✅ To truly protect 'main', configure GitHub Branch Protection rules:"
+          echo "   - Require a pull request before merging"
+          echo "   - Require approvals"
+          echo "   - Restrict who can push"
