@@ -1,0 +1,18 @@
+name: Protect main branch
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  branch-protection-reminder:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Explain branch protection configuration
+        run: |
+          echo "ℹ️ This workflow no longer fails pushes to main."
+          echo "✅ To truly protect 'main', configure GitHub Branch Protection rules:"
+          echo "   - Require a pull request before merging"
+          echo "   - Require approvals"
+          echo "   - Restrict who can push"
